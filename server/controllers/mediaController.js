@@ -41,13 +41,13 @@ exports.uploadMedia = async (req, res) => {
             ownerId = parentFolder.user;
         }
         if (!req.files || req.files.length === 0) return res.status(400).json({ msg: 'No files uploaded' });
-        
+
         const mediaItems = req.files.map((file, index) => {
             let customDisplayName;
             if (groupName) {
                 const extension = path.extname(file.originalname);
-                customDisplayName = req.files.length > 1 
-                    ? `${groupName} (${index + 1})${extension}` 
+                customDisplayName = req.files.length > 1
+                    ? `${groupName} (${index + 1})${extension}`
                     : `${groupName}${extension}`;
             }
 
@@ -123,7 +123,7 @@ exports.deleteMediaPermanently = async (req, res) => {
         const fullPath = path.join(process.cwd(), 'public', media.path);
         try {
             await fs.unlink(fullPath);
-        } catch(e) {
+        } catch (e) {
             console.warn("File not on disk but deleting DB record:", fullPath);
         }
         await media.deleteOne();

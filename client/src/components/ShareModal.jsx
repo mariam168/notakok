@@ -51,19 +51,19 @@ const ShareModal = ({ isOpen, onClose, folder, onCollaboratorsUpdate }) => {
     };
 
     return (
-        <div 
+        <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-4"
             onClick={onClose}
         >
-            <div 
+            <div
                 className="bg-neutral-900 border border-neutral-800 p-6 sm:p-8 rounded-2xl shadow-2xl w-full max-w-2xl
                            animate-in fade-in-0 zoom-in-95"
                 onClick={e => e.stopPropagation()}
             >
                 <div className="flex justify-between items-center mb-6">
-                     <div>
+                    <div>
                         <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                            <Users size={24}/> Share Folder
+                            <Users size={24} /> Share Folder
                         </h2>
                         <p className="text-sm text-neutral-400 truncate pr-4">
                             Folder: <span className="font-semibold text-white">{folder?.name}</span>
@@ -73,28 +73,28 @@ const ShareModal = ({ isOpen, onClose, folder, onCollaboratorsUpdate }) => {
                         <X size={20} />
                     </button>
                 </div>
-                
+
                 <form onSubmit={handleAddCollaborator} className="flex flex-col sm:flex-row items-center gap-3 mb-4">
-                    <input 
-                        type="email" 
-                        value={email} 
-                        onChange={e => setEmail(e.target.value)} 
-                        placeholder="Enter email to invite..." 
-                        required 
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        placeholder="Enter email to invite..."
+                        required
                         className="w-full sm:flex-grow px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:ring-white transition-all"
                     />
                     <div className="w-full sm:w-auto flex gap-3">
-                        <select 
-                            value={role} 
-                            onChange={e => setRole(e.target.value)} 
+                        <select
+                            value={role}
+                            onChange={e => setRole(e.target.value)}
                             className="w-full sm:w-auto px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:ring-white transition-all appearance-none"
                         >
                             <option value="viewer" className="bg-neutral-800">Can view</option>
                             <option value="editor" className="bg-neutral-800">Can edit</option>
                         </select>
-                        <button 
-                            type="submit" 
-                            className="bg-white text-black px-4 py-3 rounded-lg font-semibold hover:bg-neutral-200 active:scale-95 transition-all flex items-center justify-center disabled:bg-neutral-500 disabled:cursor-not-allowed" 
+                        <button
+                            type="submit"
+                            className="bg-white text-black px-4 py-3 rounded-lg font-semibold hover:bg-neutral-200 active:scale-95 transition-all flex items-center justify-center disabled:bg-neutral-500 disabled:cursor-not-allowed"
                             disabled={loading}
                         >
                             {loading ? <Loader2 className="animate-spin" size={20} /> : <UserPlus size={20} />}

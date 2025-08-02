@@ -39,7 +39,7 @@ exports.getContent = async (req, res) => {
             currentFolder = await Folder.findById(parentId).select('+password').populate('user', 'username').populate('collaborators.user', 'username email');
             if (!currentFolder) return res.status(404).json({ msg: 'Folder not found' });
             if (!hasReadAccess(currentFolder, userId)) return res.status(403).json({ msg: 'Access Denied.' });
-            
+
             const collaborator = currentFolder.collaborators.find(c => c.user._id.equals(userId));
             if (collaborator) {
                 queryOwnerId = currentFolder.user._id;
@@ -55,7 +55,7 @@ exports.getContent = async (req, res) => {
 
         let folderQuery = { user: queryOwnerId, parentFolder: parentId };
         let mediaQuery = { user: queryOwnerId, folder: parentId };
-        
+
         const isTrashView = view === 'trash';
         folderQuery.isDeleted = isTrashView;
         mediaQuery.isDeleted = isTrashView;
@@ -65,7 +65,7 @@ exports.getContent = async (req, res) => {
             folderQuery.name = regex;
             mediaQuery.displayName = regex;
         }
-        
+
         if (type && type !== 'all') {
             if (type === 'favorites') {
                 mediaQuery.isFavorite = true;
@@ -101,7 +101,7 @@ exports.getAllFoldersForNav = async (req, res) => {
         });
         const allFolders = Array.from(allFoldersMap.values());
         res.json(allFolders);
-    } catch(e) {
+    } catch (e) {
         res.status(500).json({ msg: e.message });
     }
 };
@@ -113,8 +113,8 @@ exports.createFolder = async (req, res) => {
         let ownerId = userId;
         if (parentFolder && parentFolder !== 'root') {
             const parent = await Folder.findById(parentFolder);
-            if(parent) {
-                if(!hasWriteAccess(parent, userId)) return res.status(403).json({ msg: 'Viewers cannot create folders here.' });
+            if (parent) {
+                if (!hasWriteAccess(parent, userId)) return res.status(403).json({ msg: 'Viewers cannot create folders here.' });
                 ownerId = parent.user;
             }
         }
@@ -129,7 +129,7 @@ exports.updateFolder = async (req, res) => {
     try {
         const folder = await Folder.findById(req.params.id).select('+password');
         if (!folder || !hasWriteAccess(folder, req.user.id)) return res.status(403).json({ msg: 'Access denied.' });
-        
+
         if (folder.password) {
             if (!currentPassword) return res.status(401).json({ msg: 'Current password is required to modify a protected folder.' });
             const isMatch = await folder.comparePassword(currentPassword);
@@ -138,7 +138,7 @@ exports.updateFolder = async (req, res) => {
 
         if (name) folder.name = name;
         if (newPassword !== undefined) {
-             folder.password = newPassword || undefined;
+            folder.password = newPassword || undefined;
         }
         await folder.save();
         res.json({ msg: 'Folder updated' });

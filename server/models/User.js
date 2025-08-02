@@ -5,17 +5,17 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     password: { type: String, required: true, minlength: 6 },
     isVerified: { type: Boolean, default: false },
-    verificationToken: { 
+    verificationToken: {
         type: String,
-        select: false 
+        select: false
     },
-    resetPasswordToken: { 
+    resetPasswordToken: {
         type: String,
-        select: false 
+        select: false
     },
-    resetPasswordExpires: { 
+    resetPasswordExpires: {
         type: Date,
-        select: false 
+        select: false
     }
 }, { timestamps: true });
 

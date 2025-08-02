@@ -29,7 +29,7 @@ exports.getSharedContent = async (req, res) => {
             const isMatch = await bcrypt.compare(password, link.password);
             if (!isMatch) return res.status(401).json({ msg: 'Incorrect password' });
         }
-        
+
         let content;
         if (link.itemType === 'folder') {
             const folder = await Folder.findById(link.itemId);
@@ -41,5 +41,5 @@ exports.getSharedContent = async (req, res) => {
             content = { type: 'media', ...media.toObject() };
         }
         res.json(content);
-    } catch(e) { res.status(500).json({ msg: e.message }); }
+    } catch (e) { res.status(500).json({ msg: e.message }); }
 };

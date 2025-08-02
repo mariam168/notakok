@@ -12,7 +12,7 @@ exports.getSidebar = async (req, res) => {
         const myFolders = await Folder.find({ owner: userId, parentFolder: null });
         const sharedFolders = await Folder.find({ 'collaborators.user': userId, parentFolder: null });
         res.json({ myFolders, sharedFolders });
-    } catch (e) { res.status(500).json({ msg: e.message });}
+    } catch (e) { res.status(500).json({ msg: e.message }); }
 }
 
 exports.getFolderContent = async (req, res) => {
@@ -26,7 +26,7 @@ exports.getFolderContent = async (req, res) => {
             return folder;
         }));
         res.json({ folders: populatedFolders, media });
-    } catch (e) { res.status(500).json({ msg: e.message });}
+    } catch (e) { res.status(500).json({ msg: e.message }); }
 };
 exports.createFolder = async (req, res) => {
     const { name, parentFolder } = req.body;
@@ -59,18 +59,18 @@ exports.addCollaborator = async (req, res) => {
     try {
         const folder = await Folder.findById(folderId);
         if (!folder || folder.owner.toString() !== req.user.id) return res.status(404).json({ msg: 'Folder not found or you are not the owner' });
-        
+
         const userToadd = await User.findOne({ email });
         if (!userToadd) return res.status(404).json({ msg: 'User with this email not found' });
-        if(userToadd.id === req.user.id) return res.status(400).json({ msg: "You cannot add yourself as a collaborator." });
+        if (userToadd.id === req.user.id) return res.status(400).json({ msg: "You cannot add yourself as a collaborator." });
 
         if (folder.collaborators.some(c => c.user.toString() === userToadd.id)) {
             return res.status(400).json({ msg: 'User is already a collaborator' });
         }
-        
+
         folder.collaborators.push({ user: userToadd.id, role });
         await folder.save();
         const updatedFolder = await Folder.findById(folderId).populate('collaborators.user', 'username email');
         res.json(updatedFolder.collaborators);
-    } catch(e) { res.status(500).json({ msg: e.message }); }
+    } catch (e) { res.status(500).json({ msg: e.message }); }
 }

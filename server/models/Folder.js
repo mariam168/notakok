@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const CollaboratorSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     role: { type: String, enum: ['viewer', 'editor'], default: 'viewer' }
-}, { _id: false }); 
+}, { _id: false });
 const FolderSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     name: { type: String, required: true, trim: true },
@@ -13,7 +13,7 @@ const FolderSchema = new mongoose.Schema({
     deletedAt: { type: Date },
     collaborators: [CollaboratorSchema]
 }, { timestamps: true });
-FolderSchema.pre('save', async function(next) {
+FolderSchema.pre('save', async function (next) {
     if (this.isModified('password') && this.password) {
         const salt = await bcrypt.genSalt(10);
         this.password = await bcrypt.hash(this.password, salt);
@@ -23,7 +23,7 @@ FolderSchema.pre('save', async function(next) {
     }
     next();
 });
-FolderSchema.methods.comparePassword = async function(candidatePassword) {
+FolderSchema.methods.comparePassword = async function (candidatePassword) {
     if (!this.password || !candidatePassword) return false;
     return await bcrypt.compare(candidatePassword, this.password);
 };

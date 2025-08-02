@@ -41,11 +41,11 @@ const EditMediaModal = ({ isOpen, onClose, onSave, media, allFolders }) => {
     };
 
     return (
-        <div 
+        <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-4"
             onClick={onClose}
         >
-            <div 
+            <div
                 className="bg-neutral-900 border border-neutral-800 p-6 sm:p-8 rounded-2xl shadow-2xl w-full max-w-md
                            animate-in fade-in-0 zoom-in-95"
                 onClick={e => e.stopPropagation()}
@@ -61,28 +61,28 @@ const EditMediaModal = ({ isOpen, onClose, onSave, media, allFolders }) => {
                         <X size={20} />
                     </button>
                 </div>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
                         <label className="text-sm font-medium text-neutral-400 block mb-2 flex items-center">
                             <FileEdit size={14} className="mr-2" /> Filename
                         </label>
-                        <input 
-                            type="text" 
-                            value={filename} 
-                            onChange={(e) => setFilename(e.target.value)} 
-                            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:ring-white transition-all duration-300" 
-                            required 
+                        <input
+                            type="text"
+                            value={filename}
+                            onChange={(e) => setFilename(e.target.value)}
+                            className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:ring-white transition-all duration-300"
+                            required
                         />
                     </div>
-                    
+
                     <div>
                         <label className="text-sm font-medium text-neutral-400 block mb-2 flex items-center">
-                           <FolderTree size={14} className="mr-2" /> Move to Folder
+                            <FolderTree size={14} className="mr-2" /> Move to Folder
                         </label>
-                        <select 
-                            value={folderId || 'null'} 
-                            onChange={(e) => setFolderId(e.target.value)} 
+                        <select
+                            value={folderId || 'null'}
+                            onChange={(e) => setFolderId(e.target.value)}
                             className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:ring-white transition-all duration-300 appearance-none"
                         >
                             <option value="null" className="bg-neutral-800 text-white">-- Root Folder --</option>
@@ -91,8 +91,8 @@ const EditMediaModal = ({ isOpen, onClose, onSave, media, allFolders }) => {
                     </div>
 
                     <div className="pt-4">
-                        <button 
-                            type="submit" 
+                        <button
+                            type="submit"
                             className="w-full px-4 py-3 font-bold text-black bg-white rounded-lg hover:bg-neutral-200 active:scale-95 flex justify-center items-center transition-all duration-300 disabled:bg-neutral-500 disabled:cursor-not-allowed disabled:text-neutral-300"
                         >
                             <Save className="mr-2" size={20} /> Save Changes

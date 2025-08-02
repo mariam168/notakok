@@ -16,7 +16,7 @@ import { Loader2 } from 'lucide-react';
 
 function AppContent() {
   const { loading } = useAuth();
-  
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-neutral-950">
@@ -33,7 +33,7 @@ function AppContent() {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Route>
-      
+
       <Route element={<ProtectedRoute />}>
         <Route path="/*" element={<MediaManagerPage />} />
       </Route>
@@ -46,7 +46,7 @@ function AppContent() {
 function App() {
   return (
     <>
-      <Toaster 
+      <Toaster
         position="top-center"
         reverseOrder={false}
         toastOptions={{

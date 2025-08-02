@@ -34,7 +34,7 @@ const VerifyEmailPage = () => {
         }, 1000);
 
         return () => clearTimeout(timer);
-        
+
     }, [searchParams]);
 
     const renderContent = () => {
@@ -47,8 +47,8 @@ const VerifyEmailPage = () => {
                         </div>
                         <h2 className="text-3xl font-bold text-white mt-5">Email Verified!</h2>
                         <p className="text-green-300 bg-green-900/50 p-3 rounded-lg mt-4">{message}</p>
-                        <Link 
-                            to="/login" 
+                        <Link
+                            to="/login"
                             className="w-full mt-6 block text-center px-4 py-3 font-bold text-black bg-white rounded-lg hover:bg-neutral-200 active:scale-95 transition-all duration-300"
                         >
                             Proceed to Login
@@ -59,12 +59,12 @@ const VerifyEmailPage = () => {
                 return (
                     <div className="animate-in fade-in-0 zoom-in-95">
                         <div className="inline-block p-4 bg-red-500/10 border border-red-500/20 rounded-full">
-                           <XCircle className="h-12 w-12 text-red-400" />
+                            <XCircle className="h-12 w-12 text-red-400" />
                         </div>
                         <h2 className="text-3xl font-bold text-white mt-5">Verification Failed</h2>
                         <p className="text-red-300 bg-red-900/50 p-3 rounded-lg mt-4">{message}</p>
                         <p className="text-sm text-neutral-500 mt-6">
-                           Please <Link to="/register" className="font-semibold text-white hover:underline">register again</Link> to receive a new link.
+                            Please <Link to="/register" className="font-semibold text-white hover:underline">register again</Link> to receive a new link.
                         </p>
                     </div>
                 );
@@ -81,7 +81,7 @@ const VerifyEmailPage = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-neutral-950 p-4 font-sans">
-            <div 
+            <div
                 className="w-full max-w-md p-8 sm:p-10 space-y-6 bg-neutral-900/50 backdrop-blur-sm 
                            rounded-2xl border border-neutral-800 shadow-2xl shadow-black/60 text-center"
             >

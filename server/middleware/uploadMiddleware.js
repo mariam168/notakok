@@ -13,11 +13,11 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const sanitize = (name) => name.replace(/[^a-zA-Z0-9_.-]/g, '_');
-    
+
     const groupName = req.body.groupName ? `${sanitize(req.body.groupName)}-` : '';
     const timestamp = Date.now();
     const originalName = file.originalname.replace(/\s/g, '_');
-    
+
     const finalFilename = `${groupName}${timestamp}-${originalName}`;
     cb(null, finalFilename);
   },

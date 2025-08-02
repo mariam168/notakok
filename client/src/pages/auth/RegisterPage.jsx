@@ -12,13 +12,13 @@ const RegisterPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-    
+
     const onSubmit = async e => {
         e.preventDefault();
         if (isSubmitting) return;
 
         setIsSubmitting(true);
-        
+
         const registrationPromise = register({ username, email, password });
 
         toast.promise(
@@ -45,19 +45,19 @@ const RegisterPage = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-neutral-950 p-4 font-sans">
-            
+
             {isRegistered && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center 
                                z-50 p-4 transition-opacity duration-300 animate-in fade-in-0"
                 >
-                    <div 
+                    <div
                         className="w-full max-w-md p-8 space-y-6 bg-neutral-900 rounded-2xl border 
                                    border-neutral-800 shadow-2xl shadow-black/60 text-center 
                                    animate-in fade-in-0 zoom-in-95"
                     >
                         <div className="inline-block p-4 bg-green-500/10 border border-green-500/20 rounded-full">
-                           <MailCheck className="h-12 w-12 text-green-400" />
+                            <MailCheck className="h-12 w-12 text-green-400" />
                         </div>
                         <h2 className="text-3xl font-bold text-white">Check Your Inbox!</h2>
                         <p className="text-neutral-400">
@@ -70,11 +70,11 @@ const RegisterPage = () => {
                 </div>
             )}
 
-            <div 
+            <div
                 className="w-full max-w-md p-8 sm:p-10 space-y-8 bg-neutral-900/50 backdrop-blur-sm 
                            rounded-2xl border border-neutral-800 shadow-2xl shadow-black/60"
             >
-                 <div className="text-center">
+                <div className="text-center">
                     <div className="inline-block p-4 bg-neutral-800 border border-neutral-700 rounded-full mb-5 shadow-inner">
                         <ImageIcon className="text-white" size={32} />
                     </div>
@@ -83,7 +83,7 @@ const RegisterPage = () => {
                     </h1>
                     <p className="text-neutral-400 mt-2">Join Notakok and store your files securely</p>
                 </div>
-                
+
                 <form onSubmit={onSubmit} className="space-y-6">
                     <div className="space-y-2">
                         <label className="text-sm font-medium text-neutral-400 block">Username</label>

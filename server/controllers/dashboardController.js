@@ -15,10 +15,10 @@ exports.getStats = async (req, res) => {
                     _id: null,
                     totalFiles: { $sum: 1 },
                     totalStorage: { $sum: "$size" },
-                    favorites: { 
-                        $sum: { 
-                            $cond: [ "$isFavorite", 1, 0 ] 
-                        } 
+                    favorites: {
+                        $sum: {
+                            $cond: ["$isFavorite", 1, 0]
+                        }
                     }
                 }
             }

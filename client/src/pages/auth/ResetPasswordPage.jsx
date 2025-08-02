@@ -51,11 +51,11 @@ const ResetPasswordPage = () => {
             setLoading(false);
         }
     };
-    
+
     if (message) {
         return (
             <div className="flex justify-center items-center min-h-screen bg-neutral-950 p-4 font-sans">
-                <div 
+                <div
                     className="w-full max-w-md p-8 space-y-6 bg-neutral-900/50 backdrop-blur-sm 
                                rounded-2xl border border-neutral-800 shadow-2xl shadow-black/60 text-center
                                animate-in fade-in-0 zoom-in-95"
@@ -74,12 +74,12 @@ const ResetPasswordPage = () => {
     if (isTokenInvalid) {
         return (
             <div className="flex justify-center items-center min-h-screen bg-neutral-950 p-4 font-sans">
-                <div 
+                <div
                     className="w-full max-w-md p-8 space-y-6 bg-neutral-900/50 backdrop-blur-sm 
                                rounded-2xl border border-neutral-800 shadow-2xl shadow-black/60 text-center
                                animate-in fade-in-0 zoom-in-95"
                 >
-                     <div className="inline-block p-4 bg-red-500/10 border border-red-500/20 rounded-full">
+                    <div className="inline-block p-4 bg-red-500/10 border border-red-500/20 rounded-full">
                         <XCircle className="h-12 w-12 text-red-400" />
                     </div>
                     <h2 className="text-3xl font-bold text-white">Invalid Link</h2>
@@ -91,10 +91,10 @@ const ResetPasswordPage = () => {
             </div>
         );
     }
-    
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-neutral-950 p-4 font-sans">
-            <div 
+            <div
                 className="w-full max-w-md p-8 sm:p-10 space-y-8 bg-neutral-900/50 backdrop-blur-sm 
                            rounded-2xl border border-neutral-800 shadow-2xl shadow-black/60"
             >
@@ -109,7 +109,7 @@ const ResetPasswordPage = () => {
                 </div>
 
                 {error && (
-                    <div 
+                    <div
                         className="text-red-300 bg-red-500/10 border border-red-500/20 p-3 
                                    rounded-lg text-center text-sm transition-all animate-in fade-in-50"
                     >
@@ -130,7 +130,7 @@ const ResetPasswordPage = () => {
                         {loading ? <Loader2 className="animate-spin text-black" /> : 'Reset Password'}
                     </button>
                 </form>
-                 <p className="text-center text-sm text-neutral-500">
+                <p className="text-center text-sm text-neutral-500">
                     Remember it now? <Link to="/login" className="font-semibold text-white hover:underline">Go back to login</Link>
                 </p>
             </div>

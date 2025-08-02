@@ -26,20 +26,20 @@ exports.register = async (req, res) => {
 
         console.log('--- Step 1: Token generated ---');
         console.log(user.verificationToken);
-        
+
         await user.save();
 
         console.log('--- Step 2: Token being sent in email ---');
         console.log(user.verificationToken);
-        
+
         const verificationUrl = `http://localhost:5173/verify-email?token=${user.verificationToken}`;
-        
+
         await transporter.sendMail({
             to: user.email,
             subject: 'Verify Your Email Address for Notakok',
             html: `<p>Thank you for registering! Please click this link to verify your email address:</p><p><a href="${verificationUrl}">${verificationUrl}</a></p>`,
         });
-        
+
         res.status(201).json({ msg: 'Registration successful! Please check your email to verify your account.' });
 
     } catch (e) {
@@ -85,7 +85,7 @@ exports.verifyEmail = async (req, res) => {
 
         console.log('--- Step 3: Token received from URL ---');
         console.log(token);
-        
+
         const user = await User.findOne({ verificationToken: token }).select('+verificationToken');
 
         if (!user) {
@@ -122,7 +122,7 @@ exports.forgotPassword = async (req, res) => {
         await user.save();
 
         const resetUrl = `http://localhost:5173/reset-password?token=${resetToken}`;
-        
+
         await transporter.sendMail({
             to: user.email,
             subject: 'Password Reset Request for Notakok',
@@ -154,8 +154,8 @@ exports.resetPassword = async (req, res) => {
         user.password = await bcrypt.hash(password, 10);
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
-        user.isVerified = true; 
-        
+        user.isVerified = true;
+
         await user.save();
 
         res.status(200).json({ msg: 'Your password has been successfully reset.' });

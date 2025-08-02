@@ -28,11 +28,11 @@ const ForgotPasswordPage = () => {
             setLoading(false);
         }
     };
-    
+
     if (isSubmitted) {
         return (
             <div className="flex justify-center items-center min-h-screen bg-neutral-950 p-4 font-sans">
-                <div 
+                <div
                     className="w-full max-w-md p-8 space-y-6 bg-neutral-900/50 backdrop-blur-sm 
                                rounded-2xl border border-neutral-800 shadow-2xl shadow-black/60 text-center
                                animate-in fade-in-0 zoom-in-95"
@@ -52,14 +52,14 @@ const ForgotPasswordPage = () => {
             </div>
         );
     }
-    
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-neutral-950 p-4 font-sans">
-            <div 
+            <div
                 className="w-full max-w-md p-8 sm:p-10 space-y-8 bg-neutral-900/50 backdrop-blur-sm 
                            rounded-2xl border border-neutral-800 shadow-2xl shadow-black/60"
             >
-                 <div className="text-center">
+                <div className="text-center">
                     <div className="inline-block p-4 bg-neutral-800 border border-neutral-700 rounded-full mb-5 shadow-inner">
                         <KeyRound className="text-white" size={32} />
                     </div>
@@ -70,32 +70,32 @@ const ForgotPasswordPage = () => {
                 </div>
 
                 {error && (
-                    <div 
+                    <div
                         className="text-red-300 bg-red-500/10 border border-red-500/20 p-3 
                                    rounded-lg text-center text-sm transition-all animate-in fade-in-50"
                     >
                         {error}
                     </div>
                 )}
-                
+
                 <form onSubmit={onSubmit} className="space-y-6">
                     <div className="space-y-2">
                         <label className="text-sm font-medium text-neutral-400 block">Email Address</label>
-                        <input 
-                            type="email" 
-                            name="email" 
-                            value={email} 
-                            onChange={e => setEmail(e.target.value)} 
-                            placeholder="Enter your registered email" 
-                            required 
+                        <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            placeholder="Enter your registered email"
+                            required
                             className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-lg text-white 
                                        placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 
-                                       focus:ring-offset-neutral-900 focus:ring-white transition-all duration-300" 
+                                       focus:ring-offset-neutral-900 focus:ring-white transition-all duration-300"
                         />
                     </div>
-                    <button 
-                        type="submit" 
-                        disabled={loading} 
+                    <button
+                        type="submit"
+                        disabled={loading}
                         className="w-full px-4 py-3 font-bold text-black bg-white rounded-lg 
                                    hover:bg-neutral-200 active:scale-95 flex justify-center items-center 
                                    transition-all duration-300 disabled:bg-neutral-500 

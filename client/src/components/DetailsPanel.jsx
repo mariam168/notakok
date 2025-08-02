@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, FileText, Clock, HardDrive, Calendar } from 'lucide-react';
-import { getStaticUrl, formatDate, formatFileSize } from '../services/apiService'; 
+import { getStaticUrl, formatDate, formatFileSize } from '../services/apiService';
 
 const DetailsPanel = ({ selectedItem, onClose }) => {
     if (!selectedItem) {
@@ -41,22 +41,22 @@ const DetailsPanel = ({ selectedItem, onClose }) => {
 
                 <div className="mt-8 border-t border-neutral-800 pt-6 space-y-4">
                     <h4 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider">Properties</h4>
-                    
+
                     {!isFolder && (
-                         <div className="flex items-center text-sm">
+                        <div className="flex items-center text-sm">
                             <HardDrive size={16} className="text-neutral-500 mr-3" />
                             <span className="text-neutral-400">Size:</span>
                             <span className="ml-auto font-medium text-white">{formatFileSize(selectedItem.size)}</span>
                         </div>
                     )}
-                   
+
                     <div className="flex items-center text-sm">
                         <Clock size={16} className="text-neutral-500 mr-3" />
                         <span className="text-neutral-400">Modified:</span>
                         <span className="ml-auto font-medium text-white">{formatDate(selectedItem.updatedAt)}</span>
                     </div>
 
-                     <div className="flex items-center text-sm">
+                    <div className="flex items-center text-sm">
                         <Calendar size={16} className="text-neutral-500 mr-3" />
                         <span className="text-neutral-400">Created:</span>
                         <span className="ml-auto font-medium text-white">{formatDate(selectedItem.createdAt)}</span>

@@ -9,7 +9,7 @@ const ShareLinkSchema = new mongoose.Schema({
     expiresAt: { type: Date }
 }, { timestamps: true });
 
-ShareLinkSchema.pre('save', async function(next) {
+ShareLinkSchema.pre('save', async function (next) {
     if (this.isModified('password') && this.password) {
         this.password = await bcrypt.hash(this.password, 10);
     }

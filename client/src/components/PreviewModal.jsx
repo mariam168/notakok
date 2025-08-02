@@ -8,7 +8,7 @@ const PreviewModal = ({ isOpen, onClose, item }) => {
 
     const renderContent = () => {
         if (!item) return null;
-        
+
         const itemPath = getStaticUrl(item.path);
         const type = item.mimetype ? item.mimetype.split('/')[0] : item.type;
 
@@ -29,7 +29,7 @@ const PreviewModal = ({ isOpen, onClose, item }) => {
         if (item.mimetype === 'application/pdf') {
             return <iframe src={itemPath} title={item.displayName} className="w-full h-[85vh] border-0 rounded-lg" />;
         }
-        
+
         const commonDocTypes = ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
         if (commonDocTypes.includes(item.mimetype)) {
             const googleViewerUrl = `https://docs.google.com/gview?url=${encodeURIComponent(itemPath)}&embedded=true`;
@@ -40,9 +40,9 @@ const PreviewModal = ({ isOpen, onClose, item }) => {
                 <FileWarning size={48} className="mx-auto text-yellow-500 mb-4" />
                 <p className="text-lg font-semibold text-white">Preview not available for this file type.</p>
                 <p className="text-sm text-neutral-400 mt-1 truncate max-w-xs">{item.displayName}</p>
-                <a 
-                    href={itemPath} 
-                    download={item.displayName} 
+                <a
+                    href={itemPath}
+                    download={item.displayName}
                     className="mt-6 inline-flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-lg font-semibold hover:bg-neutral-200 transition-colors"
                 >
                     <Download size={18} /> Download File
@@ -52,11 +52,11 @@ const PreviewModal = ({ isOpen, onClose, item }) => {
     };
 
     return (
-        <div 
+        <div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-4 sm:p-6 md:p-8 animate-in fade-in-0"
             onClick={onClose}
         >
-            <div 
+            <div
                 className="bg-neutral-900/50 rounded-2xl shadow-2xl w-full max-w-6xl max-h-[95vh] flex flex-col 
                            animate-in fade-in-0 zoom-in-95"
                 onClick={e => e.stopPropagation()}
@@ -64,17 +64,17 @@ const PreviewModal = ({ isOpen, onClose, item }) => {
                 <header className="flex justify-between items-center p-4 border-b border-neutral-800 flex-shrink-0">
                     <h3 className="font-semibold text-base text-white truncate mr-4">{item?.displayName}</h3>
                     <div className="flex items-center gap-2">
-                        <a 
-                            href={item ? getStaticUrl(item.path) : '#'} 
-                            download={item?.displayName} 
-                            className="p-2 rounded-full text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors" 
+                        <a
+                            href={item ? getStaticUrl(item.path) : '#'}
+                            download={item?.displayName}
+                            className="p-2 rounded-full text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors"
                             title="Download"
                         >
                             <Download size={20} />
                         </a>
-                        <button 
-                            onClick={onClose} 
-                            className="p-2 rounded-full text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors" 
+                        <button
+                            onClick={onClose}
+                            className="p-2 rounded-full text-neutral-300 hover:bg-neutral-800 hover:text-white transition-colors"
                             title="Close"
                         >
                             <X size={24} />
